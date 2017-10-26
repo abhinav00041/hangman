@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HangMan Game!!!</title>
+</head>
+<h1>Hangman!!!!</h1>
+<body>
+<script>
+
+//Array of Words
+var words = ["SKODA","BENTLEY","HONDA","JEEP","MAZDA","TOYOTA","PORSCHE","AUDI","BMW","VOLKSWAGEN","MASRATI","ALPHAROMEO","KIA","HYUNDAI","SUZUKI","FORD"];
+
+//To pick Random Word
+var word = words[Math.floor(Math.random()*words.length)];
+
+//Set up the answer array
+var answerArray = [];
+  for(var i=0;i<word.length;i++)
+  {
+    if(word[i]==="A"){
+      answerArray[i]="A";
+     }
+    else if(word[i]==="E"){
+     answerArray[i]="E";
+    }
+   else if(word[i]==="I"){
+    answerArray[i]="I";
+   }
+   else if(word[i]==="O"){
+    answerArray[i]="O";
+   }
+   else if(word[i]==="U"){
+    answerArray[i]="U";
+   }
+   else{
+    answerArray[i]="__";
+   }
+ }
+ //Getting the length of word to be gusse
+var remainingLetters = word.length;
+
+// The game loop
+
+while(remainingLetters>0){
+//show player their progress
+     alert(answerArray.join(" "));
+     var guess = prompt("Guess a letter, or click cancle to quit")
+     if(guess===null){
+       break;
+     }else if(guess.length!==1){
+       alert("please enter a single letter");
+	}else{
+	for(var j=0;j<=word.length;j++){
+		if(word[j]===guess.toUpperCase()){
+		//For to check the guess is unique
+			if(answerArray[j]==="__"){
+				answerArray[j]=guess.toUpperCase();
+				remainingLetters--;
+			}
+		}
+	  }
+	}
+}
+alert(answerArray.join(" "));
+alert("Great job!! the answer was "+word);
+</script>
+</body>
+</html>
